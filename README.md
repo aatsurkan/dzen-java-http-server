@@ -10,10 +10,10 @@ In this example, I created a web server provides 2 contexts and basic authentica
 
 ### Building
 
-Please run the script and carefully read the resulting messages:
+Please clone this repo, run the script and carefully read the resulting messages:
 
 ```sh
-$ build.sh
+$ sh /.build.sh
 ```
 
 ### Hint
