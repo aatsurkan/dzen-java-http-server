@@ -13,7 +13,7 @@ In this example, I created a web server provides 2 contexts and basic authentica
 Please clone this repo, run the script and carefully read the resulting messages:
 
 ```sh
-$ sh /.build.sh
+$ sh ./build.sh
 ```
 
 ### Hint
