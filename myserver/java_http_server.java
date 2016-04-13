@@ -2,11 +2,18 @@
  * Since Java 1.6, there's a built-in HTTP server included with the JDK. 
  * http://docs.oracle.com/javase/6/docs/jre/api/net/httpserver/spec/com/sun/net/httpserver/HttpServer.html
  *
- * Created by aleksey on 11.04.16.
+ * Created by aleksey on 13.04.16.
  * 
  */
 
 package myserver;
+
+import com.sun.net.httpserver.BasicAuthenticator;
+import com.sun.net.httpserver.Headers;
+import com.sun.net.httpserver.HttpContext;
+import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedWriter;
@@ -24,18 +31,12 @@ import java.text.SimpleDateFormat;
 
 import java.util.Date;
 
-import com.sun.net.httpserver.BasicAuthenticator;
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpContext;
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
-
 public class java_http_server {
 
 	public static final int PORT = 8080;
 
 	public static void main(String[] args) throws Exception {
+		// fill filestorage :)
 		createInfoFile();
 
 		HttpServer server = HttpServer.create(new InetSocketAddress(PORT), 0);
@@ -77,10 +78,10 @@ public class java_http_server {
 			body = body + "<ol>\n";
 			body = body + "<li><a href=\"/get0\">Source code of this Server :)</a>  <tt>[txt]</tt></li>\n";
 			body = body + "<li><a href=\"/get1\">Some info about this server</a> <tt>[txt]</tt></li>\n";
-   		body = body + "</ol>\n";
-   		body = body + "<tt>Page created at <span id=\"currdate\"></span>. Please refresh to take effect ;)</tt>\n";
-   		body = body + "<script>document.getElementById(\"currdate\").innerHTML = Date();</script>\n"; 
-   		body = body + "</body>\n</html>";
+   			body = body + "</ol>\n";
+	   		body = body + "<tt>Page created at <span id=\"currdate\"></span>. Please refresh to take effect ;)</tt>\n";
+   			body = body + "<script>document.getElementById(\"currdate\").innerHTML = Date();</script>\n"; 
+   			body = body + "</body>\n</html>";
 
 			os.write(body.getBytes());
 			os.close();
@@ -128,31 +129,31 @@ public class java_http_server {
 	}
 
 	static void createInfoFile() {
-		// The name of the file to open.
-    String fileName = "filestorage/server_info.txt";
+		// the name of the file to open.
+    	String fileName = "filestorage/server_info.txt";
 
-    try {
-			// Assume default encoding.
-      FileWriter fw = new FileWriter(fileName);
+    	try {
+			// assume default encoding.
+			FileWriter fw = new FileWriter(fileName);
 
-      // Always wrap FileWriter in BufferedWriter.
-      BufferedWriter bw = new BufferedWriter(fw);
+			// always wrap FileWriter in BufferedWriter.
+			BufferedWriter bw = new BufferedWriter(fw);
 
-      // Current datetime stamp
+			// add current datetime stamp
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			Date date = new Date();
 			System.out.println(dateFormat.format(date));
 
-      bw.write("Hello from MyServer!");
-      bw.newLine();
-      bw.write("Server started " + date + " at http://" + InetAddress.getLocalHost().getHostAddress() + ":" + PORT);
+			bw.write("Hello from MyServer!");
+			bw.newLine();
+			bw.write("Server started " + date + " at http://" + InetAddress.getLocalHost().getHostAddress() + ":" + PORT);
 
-      // Always close files.
-      bw.close();
+			// always close files.
+			bw.close();
 		}
-    catch(IOException ex) {
+		catch(IOException ex) {
 			System.out.println( "Error writing to file '" + fileName + "'");
-			// Or we could just do this:
+			// or we could just do this:
 			// ex.printStackTrace();
 		}
 	}
