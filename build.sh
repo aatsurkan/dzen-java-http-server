@@ -22,7 +22,7 @@ JAVAC_VER=$(javac -version 2>&1 | sed 's/javac \(.*\)\.\(.*\)\..*/\1\2/; 1q')
 
 	echo "...done!\n"
 	echo "Current directory:"
-  pwd
+	pwd
 	ls -all *.jar
 	echo "\nNow you can start server: $ java -jar MyServer.jar\n" 
 } || {
