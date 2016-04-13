@@ -2,9 +2,9 @@
 
 ### Overview
 
-Since Java 1.6, there's a built-in HTTP server included with the JDK.
+> Since Java 1.6, there's a built-in HTTP server included with the JDK.
 
-The HttpServer provides a simple high-level Http server API, which can be used to build embedded HTTP servers. 
+> The HttpServer provides a simple high-level Http server API, which can be used to build embedded HTTP servers. 
 
 In this example, I created a web server provides 2 contexts and basic authentication using hard-coded credentials.
 
@@ -20,7 +20,3 @@ $ build.sh
 
 For access to secret area check title in the browser toolbar.
 
-License
-----
-
-CopyLeft
